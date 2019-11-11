@@ -34,33 +34,30 @@ exports.getGifById = (req, res) => {
   pool
     .query("SELECT * FROM gifs WHERE id = $1", [id])
     .then(results => {
-      res.status(200).json({
-        status: "success",
-        data: {
-          id: results.rows[0].id,
-          createdOn: results.rows[0].createdon,
-          title: results.rows[0].title,
-          url: String,
-          comments: [
-            {
-              commentId: "Integer",
-              authorId: "Integer",
-              comment: String
-            },
-            {
-              commentId: "Integer",
-              useauthorIdrId: "Integer",
-              comment: String
+      pool
+        .query("SELECT * FROM gifcomments WHERE comment_id = $1 ", [id])
+        .then(commentResults => {
+          res.status(200).json({
+            status: "success",
+            data: {
+              id: results.rows[0].id,
+              createdOn: results.rows[0].createdon,
+              title: results.rows[0].title,
+              url: String,
+              comments: commentResults.rows
             }
-          ]
-        }
-      });
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     })
     .catch(error => {
       console.log(error);
     });
 };
 
+//@function for gif updating
 exports.updateGif = (req, res) => {
   const { id } = req.params;
   const { image, title } = req.body;
@@ -91,14 +88,21 @@ exports.deleteGif = (req, res) => {
   const { id } = req.params;
 
   pool
-    .query("DELETE FROM gifs WHERE id = $1", [id])
+    .query("DELETE FROM gifs WHERE id = $1 ", [id])
     .then(() => {
-      res.status(200).json({
-        status: "success",
-        data: {
-          message: "gif post Successfully deleted"
-        }
-      });
+      pool
+        .query("DELETE FROM gifcomments WHERE comment_id = $1", [id])
+        .then(() => {
+          res.status(200).json({
+            status: "success",
+            data: {
+              message: "gif post Successfully deleted"
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     })
     .catch(error => {
       console.log(error);

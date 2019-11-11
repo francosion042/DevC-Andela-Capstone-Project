@@ -29,27 +29,20 @@ const getArticleById = (req, res) => {
   pool
     .query("SELECT * FROM articles WHERE id = $1", [id])
     .then(results => {
-      res.status(200).json({
-        status: "success",
-        data: {
-          id: results.rows[0].id,
-          createdOn: results.rows[0].createdon,
-          title: results.rows[0].title,
-          article: results.rows[0].article,
-          comments: [
-            {
-              commentId: "Integer",
-              comment: String,
-              authorId: "Integer"
-            },
-            {
-              commentId: "Integer",
-              comment: String,
-              authorId: "Integer"
+      pool
+        .query("SELECT * FROM articlecomments WHERE comment_id = $1", [id])
+        .then(commentResult => {
+          res.status(200).json({
+            status: "success",
+            data: {
+              id: results.rows[0].id,
+              createdOn: results.rows[0].createdon,
+              title: results.rows[0].title,
+              article: results.rows[0].article,
+              comments: commentResult.rows
             }
-          ]
-        }
-      });
+          });
+        });
     })
     .catch(error => {
       console.log(error);

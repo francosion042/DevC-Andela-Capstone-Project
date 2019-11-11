@@ -32,3 +32,25 @@ exports.postComment = (req, res) => {
       console.log(error);
     });
 };
+
+exports.deleteComment = (req, res) => {
+  const { id1, id2 } = req.params;
+  pool
+    .query("DELETE FROM gifcomments WHERE comment_id = $1 AND pri_id = $2", [
+      id1,
+      id2
+    ])
+    .then(() => {
+      res.status(200).json({
+        status: "Success",
+        data: {
+          message: "Comment successfully deleted",
+          comment_id: id1,
+          pri_id: id2
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};

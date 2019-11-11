@@ -1,6 +1,11 @@
 const express = require("express");
 const router = express.Router();
 const articleController = require(".././controllers/articles");
+//@API routes for article
+//@users can post Article
+//@----------get specific article
+//@----------update article
+//@----------Delete article
 
 //@api for posting new article
 router.post("/articles/", articleController.postArticle);
