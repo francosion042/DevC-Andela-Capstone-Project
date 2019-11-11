@@ -7,5 +7,5 @@ const pool = new Pool({
   password: "@ElsTony24",
   port: 5432
 });
-
+console.log("Database Connected");
 module.exports = pool;
