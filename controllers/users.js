@@ -48,3 +48,22 @@ exports.createUser = (req, res) => {
       console.log(error);
     });
 };
+
+exports.signin = (req, res) => {
+  const { email, password } = req.body;
+
+  pool
+    .query("SELECT * FROM users WHERE email = $1", [email])
+    .then(results => {
+      res.status(200).json({
+        Status: "Success",
+        data: {
+          token: "String",
+          userId: results.rows[0].id
+        }
+      });
+    })
+    .catch(error => {
+      console.log(error);
+    });
+};
