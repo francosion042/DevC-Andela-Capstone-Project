@@ -1,12 +1,10 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
-//const CORS = require("cors");
 
 // @Middlewares
 // @Api Routes for users, Gifs, and Articles
 
-//app.use(CORS);
 //@body parser middleware for getting the body content of the form
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
