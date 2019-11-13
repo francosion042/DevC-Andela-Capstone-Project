@@ -9,17 +9,26 @@ const postArticle = (req, res) => {
       "INSERT INTO articles (title, article, createdon) VALUES ($1,$2,$3)",
       [title, article, dateTime]
     )
-    .then(results => {
-      console.log(results.rows);
-      res.json({
-        status: "success",
-        data: {
-          message: "Article successfully created",
-          articleId: `${results}`,
-          createdOn: dateTime,
-          title: `${title}`
-        }
-      });
+    .then(() => {
+      pool
+        .query("SELECT * FROM articles WHERE title = $1 AND article = $2", [
+          title,
+          article
+        ])
+        .then(results => {
+          res.status(201).json({
+            status: "success",
+            data: {
+              message: "Article successfully created",
+              articleId: `${results.rows[0].id}`,
+              createdOn: dateTime,
+              title: `${title}`
+            }
+          });
+        })
+        .catch(error => {
+          console.log(error);
+        });
     });
 };
 
