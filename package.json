@@ -10,6 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/francosion042/Teamwork-back-end.git"
   },
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "Anthony Nwobodo",
   "license": "ISC",
   "bugs": {
@@ -30,5 +34,8 @@
   },
   "devDependencies": {
     "eslint": "^6.6.0"
+  },
+  "engines": {
+    "node": "12.x"
   }
 }
