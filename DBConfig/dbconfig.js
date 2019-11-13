@@ -8,7 +8,6 @@ const { Pool } = require("pg");
 //   port: 5432
 // });
 
-
 //Connection to cloud database(ElephantSQL)
 const pool = new Pool({
   user: "hjcjmicm",

@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - 12
+
+script:
+  - npm test
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+
+cache:
+  directories:
+    - "node_modules"
+
+  notifications:
+    email: false
+services:
+  - postgresql

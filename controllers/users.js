@@ -78,6 +78,7 @@ exports.createUser = (req, res) => {
 
 //@Function to signin User
 exports.signin = (req, res) => {
+  // eslint-disable-next-line no-unused-vars
   const { email, password } = req.body;
 
   //Finds the validation errors in this request and wraps them in an object with handy functions

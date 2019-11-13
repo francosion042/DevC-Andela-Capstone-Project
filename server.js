@@ -21,6 +21,7 @@ app.use("/api/v1", require("./Routes/gifs"));
 //@API routes for gif and article comments
 app.use("/api/v1", require("./Routes/comments"));
 
+// eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
