@@ -23,7 +23,10 @@ exports.postGif = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -49,11 +52,17 @@ exports.getGifById = (req, res) => {
           });
         })
         .catch(error => {
-          console.log(error);
+          res.status(400).json({
+            status: "error",
+            error: error
+          });
         });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -79,7 +88,10 @@ exports.updateGif = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -101,10 +113,16 @@ exports.deleteGif = (req, res) => {
           });
         })
         .catch(error => {
-          console.log(error);
+          res.status(400).json({
+            status: "error",
+            error: error
+          });
         });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };

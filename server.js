@@ -21,7 +21,10 @@ app.use("/api/v1", require("./Routes/gifs"));
 //@API routes for gif and article comments
 app.use("/api/v1", require("./Routes/comments"));
 
-app.use("/", require("./Routes/index"));
+//@API route for feed
+app.use("/api/v1", require("./Routes/feeds"));
+
+app.use("/api/v1", require("./Routes/index"));
 
 // eslint-disable-next-line no-undef
 const PORT = process.env.PORT || 5000;

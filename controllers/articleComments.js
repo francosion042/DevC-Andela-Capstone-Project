@@ -22,17 +22,23 @@ exports.postComment = (req, res) => {
               message: "Comment successfully created",
               createdOn: dateTime,
               articleTitle: selectResult.rows[0].title,
-              article: selectResult.rows[0].article
-              // comment: insertResult.rows[0].comment
+              article: selectResult.rows[0].article,
+              comment: comment
             }
           });
         })
         .catch(error => {
-          console.log(error);
+          res.status(400).json({
+            status: "error",
+            error: error
+          });
         });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -54,6 +60,9 @@ exports.deleteComment = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
