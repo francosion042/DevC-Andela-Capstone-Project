@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
+const auth = require(".././middleware/auth");
+const admin_auth = require(".././middleware/admin_auth");
 const userController = require("../controllers/users");
 //@User Routes
 //@Admin can Create User
@@ -17,6 +19,7 @@ const userController = require("../controllers/users");
 router.post(
   "/auth/create-user",
   [
+    admin_auth,
     check("email", "Enter a Valid email")
       .isEmail()
       .isLowercase()
@@ -42,9 +45,9 @@ router.post(
 );
 
 //@Route to get a single User
-router.get("/auth/users/:id", userController.getUser);
+router.get("/auth/users/:id", auth, userController.getUser);
 
 //@Router to delete a user
-router.delete("/auth/users/:id", userController.deleteUser);
+router.delete("/auth/users/:id", auth, userController.deleteUser);
 
 module.exports = router;

@@ -27,7 +27,10 @@ const postArticle = (req, res) => {
           });
         })
         .catch(error => {
-          console.log(error);
+          res.status(400).json({
+            status: "error",
+            error: error
+          });
         });
     });
 };
@@ -54,7 +57,10 @@ const getArticleById = (req, res) => {
         });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -79,7 +85,10 @@ const updateArticle = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -96,7 +105,10 @@ const deleteArticle = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 

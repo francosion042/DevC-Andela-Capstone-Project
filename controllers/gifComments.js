@@ -18,18 +18,23 @@ exports.postComment = (req, res) => {
             data: {
               message: "Comment successfully created",
               createdOn: dateTime,
-              gifTitle: selectResult.rows[0].title
-
-              // comment: insertResult.rows[0].comment
+              gifTitle: selectResult.rows[0].title,
+              comment: comment
             }
           });
         })
         .catch(error => {
-          console.log(error);
+          res.status(400).json({
+            status: "error",
+            error: error
+          });
         });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
 
@@ -51,6 +56,9 @@ exports.deleteComment = (req, res) => {
       });
     })
     .catch(error => {
-      console.log(error);
+      res.status(400).json({
+        status: "error",
+        error: error
+      });
     });
 };
