@@ -7,12 +7,12 @@ const pool = require("../DBConfig/dbconfig");
 
 exports.createUser = (req, res) => {
   const {
-    firstname,
-    lastname,
+    firstName,
+    lastName,
     email,
     password,
     gender,
-    jobrole,
+    jobRole,
     department,
     address,
     is_admin
@@ -23,7 +23,6 @@ exports.createUser = (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(422).json({ errors: errors.array() });
   }
-
 
   //@check if user exists
   pool
@@ -46,12 +45,12 @@ exports.createUser = (req, res) => {
             .query(
               "INSERT INTO users (firstname,lastname,email,password,gender,jobrole,department,address,is_admin,avatar) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10)",
               [
-                firstname,
-                lastname,
+                firstName,
+                lastName,
                 email,
                 hashedpassword,
                 gender,
-                jobrole,
+                jobRole,
                 department,
                 address,
                 is_admin,

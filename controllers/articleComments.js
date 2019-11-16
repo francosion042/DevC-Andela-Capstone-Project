@@ -1,4 +1,4 @@
-const pool = require(".././DBConfig/dbconfig");
+const pool = require("../DBConfig/dbconfig");
 
 //creating comment fora specific article
 exports.postComment = (req, res) => {
