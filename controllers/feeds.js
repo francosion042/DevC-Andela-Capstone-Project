@@ -1,4 +1,4 @@
-const pool = require(".././DBConfig/dbconfig");
+const pool = require("../DBConfig/dbconfig");
 
 exports.getFeeds = (req, res) => {
   pool.query("SELECT * FROM articles ORDER BY id Desc").then(articleResults => {

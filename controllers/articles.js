@@ -1,4 +1,4 @@
-const pool = require(".././DBConfig/dbconfig");
+const pool = require("../DBConfig/dbconfig");
 
 //@posting a new article
 const postArticle = (req, res) => {

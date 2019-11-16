@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
+const { cloudinaryConfig } = require("./config/cloudinaryConfig");
 
 // @Middlewares
 // @Api Routes for users, Gifs, and Articles
@@ -8,6 +9,7 @@ const bodyParser = require("body-parser");
 //@body parser middleware for getting the body content of the form
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use("*", cloudinaryConfig);
 
 //@API routes for users
 app.use("/api/v1", require("./Routes/users"));

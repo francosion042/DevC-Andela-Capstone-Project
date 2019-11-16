@@ -1,4 +1,4 @@
-const pool = require(".././DBConfig/dbconfig");
+const pool = require("../DBConfig/dbconfig");
 
 exports.postComment = (req, res) => {
   const { comment } = req.body,
